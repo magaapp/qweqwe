@@ -15,4 +15,4 @@ if __name__ == "__main__":
     # حلقة تكرار لإرسال الأمر بشكل متتالي كل 10 ثوانٍ
     while True:
         send_command("play")
-        time.sleep(10)
+        time.sleep(60)
