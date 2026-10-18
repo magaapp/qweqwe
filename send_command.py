@@ -1,3 +1,4 @@
+import time
 import requests
 
 # رابط قاعدة البيانات الخاصة بك
@@ -11,5 +12,7 @@ def send_command(cmd):
         print("فشل إرسال الأمر:", response.status_code)
 
 if __name__ == "__main__":
-    # إرسال أمر فتح اليوتيوب كاختبار
-    send_command("open_youtube")
+    # حلقة تكرار لإرسال الأمر بشكل متتالي كل 10 ثوانٍ
+    while True:
+        send_command("play")
+        time.sleep(10)
