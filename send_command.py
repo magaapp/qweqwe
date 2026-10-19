@@ -19,16 +19,31 @@ if __name__ == "__main__":
     print("بدء تشغيل السكربت لمدة 5 ساعات...")
 
     while time.time() - start_time < duration:
-        # 1. إرسال none
+        # 1. إرسال none والانتظار لمدة 50 ثانية
         send_command("none")
-        time.sleep(10)
         
-        # التحقق من انتهاء الوقت قبل إرسال الأمر الثاني
+        # الانتظار لمدة 50 ثانية مع التحقق من انتهاء الوقت الإجمالي كل ثانية
+        wait_time = 50
+        elapsed_wait = 0
+        while elapsed_wait < wait_time:
+            if time.time() - start_time >= duration:
+                break
+            time.sleep(1)
+            elapsed_wait += 1
+            
+        # التحقق من انتهاء الوقت الإجمالي قبل الانتقال للخطوة التالية
         if time.time() - start_time >= duration:
             break
             
-        # 2. إرسال play
+        # 2. إرسال play والانتظار لمدة 8 ثواني
         send_command("play")
-        time.sleep(10)
+        
+        wait_time_play = 8
+        elapsed_wait_play = 0
+        while elapsed_wait_play < wait_time_play:
+            if time.time() - start_time >= duration:
+                break
+            time.sleep(1)
+            elapsed_wait_play += 1
 
     print("انتهت مدة الـ 5 ساعات وتوقف السكربت.")
