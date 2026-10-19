@@ -12,7 +12,11 @@ def send_command(cmd):
         print("فشل إرسال الأمر:", response.status_code)
 
 if __name__ == "__main__":
-    # حلقة تكرار لإرسال الأمر بشكل متتالي كل 10 ثوانٍ
-    while True:
+    # تكرار إرسال الأمر 5 مرات (كل 10 ثوانٍ) ثم الانتهاء لكي لا يعلق الـ GitHub Actions
+    for i in range(5):
+        print(f"الإرسال رقم {i+1}...")
         send_command("play")
-        time.sleep(10)
+        if i < 4:  # لا تنتظر بعد المرة الأخيرة
+            time.sleep(10)
+            
+    print("انتمى إرسال الأوامر بنجاح وتوقف الأكشن.")
